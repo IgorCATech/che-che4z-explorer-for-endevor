@@ -1,3 +1,5 @@
+# Explorer for Endevor
+
 <div id="header" align="center">
 
 [![Build Status](https://ci.eclipse.org/che4z/buildStatus/icon?job=endevorExplorer%2Fdevelopment)](https://ci.eclipse.org/che4z/job/endevorExplorer/job/master/)
@@ -6,15 +8,17 @@
 
 </div>
 
-# Explorer for Endevor
+Explorer for Endevor is a part of the [Che4z](https://github.com/eclipse/che-che4z) open-source project. The extension is also part of [Code4z](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.code4z-extension-pack), an all-round package that offers a modern experience for mainframe application developers, including [HLASM Language Support](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.hlasm-language-support), [COBOL Language Support](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.cobol-language-support), [Zowe Explorer](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe), and [Debugger for Mainframe](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.debugger-for-mainframe) extensions.
 
-Explorer for Endevor gives you the ability to Browse and Retrieve CA Endevor® SCM elements using a user-friendly, intuitive IDE interface. Explorer for Endevor also allows you to create customized filters for Endevor Elements and their locations to help make your workflow more efficient.
+The Explorer for Endevor VS Code extension modernizes the way you interact with CA Endevor® SCM, using a user-friendly, intuitive IDE interface and provides the following benefits:
 
-> How can we improve Explorer for Endevor? [Let us know on our Git repository](https://github.com/eclipse/che-che4z-explorer-for-endevor/issues)
+- View and retrieve CA Endevor elements
+- View elements details
+- Manage your Endevor profiles, Endevor location profiles, and base profiles
+- Perform quick edit
+- Generate an element
 
-This extension is a part of the [Che4z](https://github.com/eclipse/che-che4z) open-source project. Feel free to contribute right here.
-
-Explorer for Endevor is also part of [Code4z](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.code4z-extension-pack), an all-round package that offers a modern experience for mainframe application developers, including [HLASM Language Support](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.hlasm-language-support), [COBOL Language Support](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.cobol-language-support), [Zowe Explorer](https://marketplace.visualstudio.com/items?itemName=Zowe.vscode-extension-for-zowe) and [Debugger for Mainframe](https://marketplace.visualstudio.com/items?itemName=broadcomMFD.debugger-for-mainframe) extensions.
+> How can we improve Explorer for Endevor? [Open an issue in our Git repository](https://github.com/eclipse/che-che4z-explorer-for-endevor/issues). Feel free to contribute.
 
 ## Table of Contents
 
@@ -24,23 +28,19 @@ Explorer for Endevor is also part of [Code4z](https://marketplace.visualstudio.c
   - [Create a Profile](#create-a-profile)
   - [Profile Persistence](#profile-persistence)
   - [Manage your Profiles](#manage-your-profiles)
-  - [Working with Endevor Configurations](#working-with-endevor-configurations)
-  - [Filters](#filters)
-  - [Browse or Retrieve an Element](#browse-or-retrieve-an-element)
-- [Configuration and Usage Tips](#configuration-and-usage-tips)
+  - [Sample Use Cases](#sample-use-cases)
 - [Technical Assistance and Support for Explorer for Endevor](#technical-assistance-and-support-for-explorer-for-endevor)
 
 ## Prerequisites
 
-Prior to using Explorer for Endevor, ensure that you meet the following prerequisites:
+Ensure that you meet the following prerequisites before you can use Explorer for Endevor:
 
 - Access to Mainframe
 - Access to CA Endevor® SCM
-
 - CA Endevor® SCM version 18.0.12 or higher with the following PTFs applied:
-  - (if using version 18.0.x) PTFs SO09580, SO09581, SO10013 and SO11268
+  - (if using version 18.0.x) PTFs SO09580, SO09581, SO10013, and SO11268
   - (if using version 18.1.x) PTF SO11272
-  - (Optional) For use of Web Services with STC Pooling, ensure that you also have PTFs SO03928 and SO03929.
+  - (Optional)(Web Services with STC Pooling only) PTFs SO03928 and SO03929
 - CA Endevor® SCM Web Services installed and configured. For more information, see the [CA Endevor® SCM documentation](https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-endevor-software-change-manager/18-1/how-to-enable-web-services.html)
 - (Optional) Zowe CLI v1-LTS
 - (Optional) CA Endevor plug-in for Zowe CLI version 6.0.0
@@ -51,135 +51,137 @@ Explorer for Endevor is included with Eclipse Che version 7.6.0 and above. Check
 
 ## Getting Started
 
+Create an Endevor profile and review use cases to see how you can use the full potential of Explorer for Endevor.
 ### Create a Profile
 
-Explorer for Endevor uses Zowe CLI profiles for the CA Endevor plug-in to access Endevor inventory locations on the mainframe. If you already have a CA Endevor plug-in Zowe CLI profile, you can access inventory locations immediately through your profile in the tree. If you do not have a profile, you can create one in Explorer for Endevor.
-
-After you create your profile, specify the configurations that you want to work with. This allows you to view and explore the selected Endevor repositories. You can create multiple profiles if necessary.
+Explorer for Endevor uses Zowe CLI `endevor` and `endevor-location` profiles for CA Endevor SCM Plug-in for Zowe CLI to access Endevor inventory locations on the mainframe. If you already have a CA Endevor plug-in Zowe CLI profile, you can access inventory locations immediately, using your profile in the tree. If you do not have a profile, you can create one in Explorer for Endevor.
 
 **Follow these steps:**
 
-1. Click on the + icon.
+1. Click the **Add a New Profile** button to add a new Endevor profile.
 2. Enter a name for your profile.
-3. Enter your Endevor URL in the format `https://host:port`.
-4. (Optional) To add your mainframe credentials to your profile, enter your username and password. Adding your credentials to your profile lets you access different configurations without entering your credentials.
-   If you do not add credentials to your profile, a credential prompt displays whenever you click on an Endevor configuration in the tree.
+3. Enter your Endevor URL in the `https://host:port` format.
+4. (Optional) To add your mainframe credentials to your profile, enter your username and password. Adding your credentials to your profile lets you access different Endevor locations without entering your credentials.
+   If you do not add credentials to your profile, a credential prompt displays whenever you click on an Endevor location profile in the tree.
 5. Specify whether to Reject or Accept connections with self-signed certificates.
    - **True**: Reject connections with self-signed certificates.
    - **False**: Accept connections with self-signed certificates.
 
-Your profile is now available in the panel on the left. You can also use this profile in Zowe CLI directly.
+Your profile is now available in the tree. You can also use the same profile in Zowe CLI directly.
+
+>Tip: You can create multiple profiles if necessary.
+
+Once you have an Endevor profile, you need to add an Endevor location profile where you specify your Endevor instance, Endevor path that consists of environment, system, subsystem, stage number, and element type, CCID, and Comment. Endevor location profiles let you view and works with elements of specified Endevor locations.
+
+Follow these steps:
+
+1. Click the **+** icon next to your Endevor profile to add a new location profile.
+2. Create a name for the Endevor location profile and press Enter.
+3. Select an instance from the quick-pick menu and press Enter.
+4. Enter Endevor path and press Enter.
+
+   The path has the `environment/stage/system/subsystem/type` format.
+   
+   **Note**: If you are unsure about the `type` parameter, you can substitute the parameter with a \* wildcard.
+
+5. (Optional) Enter CCID and press Enter.
+6. (Optional) Enter comment and press Enter.
+
+   **Notes**:
+
+   - If you want to skip the CCID and/or comment step, you can leave the inputs blank by pressing Enter.
+   - You can cancel the creation of Endevor location profile at any step by pressing Escape.
 
 ### Profile Persistence
 
-Explorer for Endevor loads your default Endevor profile into the tree. When you create a new profile in the extension, or select an existing Endevor profile to use, the profile will also appear in the tree. The additional profile will persist in the tree only provided that you use the profile to specify an Endevor web services instance and search that inventory location using a filter or the map. The information for profiles is stored in the settings.json and includes the web services instance you specified during a session.
+Explorer for Endevor loads your default Endevor profile into the tree. When you create a new profile in the extension, or select an existing Endevor profile to use, the profile also appears in the tree.
 
 ### Manage your Profiles
 
-To edit a profile or update your credentials, use the Zowe CLI and the `zowe profiles update endevor <name of profile>` command. Here you can view the details of an existing profile and update them as needed.
+You can edit a profile or update your credentials, using the Zowe CLI and the `zowe profiles update endevor-profile <profileName>` and `zowe profiles update endevor-location-profile <profileName>` command. The commands let you update the details of existing profiles.
 
-If you have multiple profiles in the tree, you might wish to delete some once you no longer need them for a session. To do so, click on the trash can icon on the same line as the profile name.
+If you do need to have some of your profiles in the tree, you can hide such profiles. To do so, right-click on a profile and select **Remove Profile** option.
 
-**Note:** This action does not permanently delete the profile. When you click the + icon again, you will be able to add any previously created profiles again. You can only delete a profile by using the Zowe CLI.
+**Note:** The **Remove Profile** action does not permanently remove the profile. When you click the "Add a New Profile" icon again, you can add any previously created profiles again. You can only permanently delete a profile, using the Zowe CLI.
 
-### Working with Endevor Configurations
+### Sample Use Cases
 
-Now that you have created your profile, assign the configurations that you want to work with.
+Review the following use cases to familiarize yourself with the basic Explorer for Endevor features:
 
-**Follow these steps:**
+- [View an element](#view-an-element): You can view the content of the selected element.
+- [View details](#view-details): You can view the details of a chosen element. The details include the environment, stage, system, subsystem, element type, and the name and extension of the element.
+- [Retrieve an element](#retrieve-an-element): You can download the selected element.
+- [Retrieve an element with dependencies](#retrieve-an-element-with-dependencies): You can download the selected element with dependencies.
+- [Quick edit](#quick-edit): You can download, edit, and upload the selected element.
+- [Generate](#generate): You can call the `generate` command for an element.
 
-1. Click on the profile in the panel.
-   The profile automatically populates in the terminal panel.
+#### View an Element
 
-2. To add a new configuration, click + next to the panel and select the required configuration.
-   Your configuration appears in the panel below the profile entry.
-   This step can be repeated as many times as you need to add multiple configurations.
-
-You have successfully connected a profile to a configuration, and the profile is listed under Explorer for Endevor in the interface.
-
-To change the name of a configuration, click the pencil icon next to the configuration in the tree.
-
-### Filters
-
-Explorer for Endevor filters can be used so that only the data you wish to work with is shown.
-
-Filters that you create are associated with your profile. Once you log in, the stored filters are available for use.
-
-#### Create a Filter
-
-Explorer for Endevor filters can be created in two ways:
-
-- Create a filter manually by entering all the required parameters.
-
-- Search in Map View, and save a filter from the path followed.
-
-#### Create a Manual Filter:
-
-Creating a manual filter is a quick way to narrow down your search to only relevant results.
-
-**Follow these steps**
-
-1.  Establish the exact parameters to search as follows:
-
-    - Environment (env)
-    - Stage Number (stgnum)
-    - System (sys)
-    - Subsystem (subsys)
-    - Type (type)
-    - Element (element)
-
-      If you are unsure about any of the parameters, you can substitute up to two with a \* wildcard, or instead create a filter using the Map View option.
-
-2.  Click the plus icon next to **Filter** on the **Explorer for Endevor** tab.
-
-    A prompt appears for you to enter the required parameters as follows:
-
-        - env/stgnum/sys/subsys/type/element
-
-    If the parameters (with a maximum of two parameters as \* wildcards) are correctly entered, the filter appears under the expanded Filter section in the Explorer for Endevor tab.
-
-#### Create a Filter in Map View:
-
-Map View allows you to create custom filters, without necessarily knowing the parameters in advance or if you have limited or no prior knowledge of Endevor.
+You can view the contents of an element by clicking on the element in the tree. The chosen element is displayed in the editor area. Viewing the contents of the element allows you to determine if you want to retrieve and work with the element.
 
 **Follow these steps:**
 
-1.  Open Map View in Explorer for Endevor for your selected Host
-2.  Select your desired options as you navigate through the different parameters in hierarchical order.
+1. Hover over an element you want to view.
+2. Click the element to see the contents of the element.
 
-3.  Select an entry at the **Type** level, and click the plus icon.
+   The contents of the element display in the editor area.
 
-    The path that you followed appears highlighted at the top of your screen, displaying the following dialog:
+#### View Details
 
-        "Create a new Endevor filter (Press 'Enter' to confirm or 'Escape' to cancel)"
-
-4.  If the created filter matches your requirements, Press Enter.
-
-    The newly created filter is automatically saved and now shows as an option under the Filters View
-
-### Browse or Retrieve an Element
-
-The Browse Element action displays the entire contents of the Element, including related metadata. This allows you to determine if you want to retrieve and work with the Element
+The details of an element you want to view display in the editor area in a separate tab.
 
 **Follow these steps:**
 
-1. Right-click on the element in either the Map or Filters view.
+1. Right-click on an element.
+2. Select the **View Details** option.
 
-   The options to Browse or Retrieve the Element appear.
+   The details of the element display in the editor area.
 
-2. Select the Browse Element option.
+#### Retrieve an Element
 
-   The Element is displayed in the panel, including related information, as shown below:
+You can download an element to your workspace and decide whether you want to edit the element.
 
-3. Review the displayed information to determine if it is relevant or useful to you.
+**Follow these steps:**
 
-   You have successfully opened an element for inspection. If you wish, you can now Retrieve the Element, with or without Dependencies.
+1. Right-click on an element.
+2. Select the **Retrieve** option.
 
-## Configuration and Usage Tips
+   The extension downloads the element and places it to your workspace. The contents of the element display in the editor area. You can edit the element immediately.
 
-- Delete any filters when no longer required. Filters are saved automatically and so the list might become hard to manage.
+#### Retrieve an Element with Dependencies
 
-- Restrict filters to a maximum of two wildcard entries to avoid heavy resource usage. If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+You can download an element with dependencies to your workspace and decide whether you want to edit the element.
+
+**Follow these steps:**
+
+1. Right-click on an element.
+2. Select the **Retrieve with dependencies** option.
+
+   The extension downloads the element and places it to your workspace. The contents of the element display in the editor area. You can edit the element immediately.
+
+#### Quick Edit
+
+The **Quick Edit** action lets you download an element, then edit and upload the element back.
+
+**Follow these steps:**
+
+1. Right-click on an element.
+2. Select the **Quick Edit** option.
+
+   The contents of the element display in the editor area. You can edit the element.
+
+3. Press CTLR+S or Command+S when you want to save and upload the edited element back.
+
+#### Generate
+
+You can use the **Generate** action to call the CA Endevor `generate` command for a selected element.
+
+**Follow these steps:**
+
+1. Right-click on an element.
+2. Select the **Generate** option.
+
+   The pop-up notifying that the `generate` command was called appears.
 
 ---
 
@@ -187,9 +189,7 @@ The Browse Element action displays the entire contents of the Element, including
 
 The Explorer for Endevor extension is made available to customers on the Visual Studio Code Marketplace in accordance with the terms and conditions contained in the provided End-User License Agreement (EULA).
 
-If you are on active support for CA Endevor, technical assistance and support is provided to Broadcom’s CA Endevor customers in accordance with the terms, guidelines, details and parameters located within Broadcom’s “Working with Support” guide located at:
-
-https://techdocs.broadcom.com/us/product-content/admin-content/ca-support-policies.html?intcmp=footernav
+If you are on active support for CA Endevor, you get technical assistance and support in accordance with the terms, guidelines, details, and parameters that are located within the Broadcom [Working with Support](https://techdocs.broadcom.com/us/product-content/admin-content/ca-support-policies.html?intcmp=footernav) guide.
 
 This support generally includes:
 
